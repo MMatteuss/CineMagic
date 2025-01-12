@@ -1,0 +1,112 @@
+h1.card-title {
+    font-family: Impact, fantasy;
+    font-size: 2.5rem; /* Ajuste o tamanho conforme necessário */
+}
+
+/* Estilos para adicionar sombra ao botão e deixá-lo mais chamativo */
+.btn-primary {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #ad2c94;
+    border-color: #ad2c94;
+}
+
+.btn-primary:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    background-color: #cc4476;
+    border-color: #cc4476;
+}
+
+.sidebar-fixa {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #f8f9fa;
+    z-index: 1000;
+    padding: 10px;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-fixa h5 {
+    color: #bb3284;
+}
+
+.sidebar-fixa .form-control {
+    border-color: #bb3284;
+}
+
+.sidebar-fixa .list-unstyled a {
+    color: #d54672;
+}
+
+.sidebar-fixa .list-unstyled a:hover {
+    color: #ad2c94;
+    text-decoration: none;
+}
+
+/* Estilos personalizados */
+.navbar-brand {
+    font-family: 'Great Vibes', cursive;
+    color: #bb3284;
+}
+
+.navbar-brand img {
+    height: 50px; /* Ajuste o tamanho conforme necessário */
+    margin-right: 10px;
+}
+
+.card-title {
+    font-family: 'Montserrat', sans-serif;
+    color: #d54672;
+}
+.card-text {
+    font-family: 'Roboto', sans-serif;
+    color: #a32991;
+}
+.autocomplete-suggestions {
+    border: 1px solid #ddd;
+    max-height: 150px;
+    overflow-y: auto;
+    background-color: white;
+}
+.autocomplete-suggestion {
+    padding: 10px;
+    cursor: pointer;
+}
+.autocomplete-suggestion:hover {
+    background-color: #f0f0f0;
+}
+
+
+/* Estilos para o rodapé */
+.footer {
+    background-color: #f8f9fa;
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.footer .text-muted {
+    color: #6c757d;
+    font-family: 'Roboto', sans-serif;
+}
+
+.footer .text-muted a {
+    color: #ad2c94;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.footer .text-muted a:hover {
+    color: #cc4476;
+    text-decoration: underline;
+}
+
+.adsbygoogle {
+    height: 250px; /* Defina a altura desejada */
+    max-height: 300px; /* Opcional: defina uma altura máxima */
+}
+
+.container-fluid {
+    margin-bottom: 60px; /* Ajuste este valor conforme necessário */
+}

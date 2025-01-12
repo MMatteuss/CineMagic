@@ -1,0 +1,64 @@
+/* Estilos para dispositivos móveis */
+@media (max-width: 576px) {
+    nav{
+        display: flex;
+    }
+    .navbar-brand {
+        font-size: 1.2em;
+        text-align: center;
+        width: 100%;
+    }
+    .card {
+        margin-bottom: 1rem;
+        width: 100%;
+    }
+    .card-body {
+        padding: 0.5rem;
+    }
+    .card-title {
+        font-size: 1em;
+    }
+    .card-text {
+        font-size: 0.9em;
+    }
+    .btn-primary {
+        font-size: 0.8em;
+        padding: 0.4rem 0.6rem;
+    }
+    .col-md-10 {
+        margin-left: 0;
+    }
+    .input-group {
+        flex-direction: column;
+    }
+    .input-group-append {
+        margin-top: 0.5rem;
+        width: 100%;
+    }
+    .input-group-append button {
+        width: 100%;
+    }
+    .col-6 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .navbar-brand {
+        text-align: center;
+        width: 100%;
+    }
+    /* Adicionar estilos responsivos para o input */
+    #nome_filme {
+        width: 100%; /* Faz o input ocupar toda a largura disponível */
+        padding: 0.5rem; /* Ajusta o preenchimento interno do input */
+        font-size: 1em; /* Ajusta o tamanho da fonte */
+    }
+    /* Estilos adicionais de alinhamento */
+    .navbar-brand {
+        display: flex;
+        align-items: center;
+    }
+    .navbar-nav {
+        display: flex;
+        align-items: center;
+    }
+}

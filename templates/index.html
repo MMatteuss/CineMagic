@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineMagic</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="icon" href="../static/img/Logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="../static/css/responsivo.css">
+</head>
+<body>
+    <input type="hidden" id="current-page" value="{{ page }}">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">
+            <img src="/static/img/Logo.png" alt="CineMagic Logo" style="height: 30px; margin-right: 10px;">
+            CineMagic
+        </a>
+        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <button id="butaoCompartilhar" name="butaoCompartilhar" class="btn btn-primary btn-compartilhar">Compartilhar</button>
+                </li>
+                <li class="nav-item">
+                    <button class="btn btn-secondary btn-relatar-bug">Relatar bug</button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    
+
+    <div class="container-fluid">
+        <div class="row">
+            <br>
+            <!-- Sidebar Esquerda -->
+            <div class="col-md-2 bg-light d-none d-md-block">
+                <h5>Anuncios</h5>
+                <ul class="list-unstyled">
+                    <li></li>
+                    <!-- Adicione mais categorias conforme necessário -->
+                </ul>
+            </div>
+            <!-- Área de Conteúdo Principal -->
+            <div class="col-12 col-md-10">
+                <form method="POST" autocomplete="off">
+                    <label for="nome_filme">Nome do Filme ou Série:</label>
+                    <div class="input-group">
+                        <input type="text" id="nome_filme" name="nome_filme" class="form-control" placeholder="Pesquisar Filme ou Série:" required>
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="submit">Pesquisar</button>
+                        </div>
+                    </div>
+                </form>
+                <br>
+                {% if mensagem %}
+                    <div class="alert alert-warning" role="alert">
+                        {{ mensagem }}
+                    </div>
+                {% endif %}
+                <!-- Grid de Filmes e Séries -->
+                <div class="row" id="filmes-container">
+                    <!-- Filmes Aleatórios -->
+                    {% if not filmes %}
+                        {% for filme in filmes_aleatorios %}
+                            <div class="col-6 col-md-4 mb-3">
+                                <div class="card">
+                                    <img src="{{ filme.Poster }}" class="card-img-top" alt="Poster do filme {{ filme.Title }}">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ filme.Title }}</h5>
+                                        <p class="card-text"><strong>Ano:</strong> {{ filme.Year }}</p>
+                                        <p class="card-text"><strong>Gênero:</strong> {{ filme.Genre }}</p>
+                                        <p class="card-text"><strong>Resumo:</strong> {{ filme.Plot }}</p>
+                                        <p class="card-text"><strong>Diretor:</strong> {{ filme.Director }}</p>
+                                        <p class="card-text"><strong>Elenco:</strong> {{ filme.Actors }}</p>
+                                        <p class="card-text"><strong>Duração:</strong> {{ filme.Runtime }}</p>
+                                        <p class="card-text"><strong>Idioma:</strong> {{ filme.Language }}</p>
+                                        <p class="card-text"><strong>País:</strong> {{ filme.Country }}</p>
+                                        <p class="card-text"><strong>Nota no IMDb:</strong> ⭐ {{ filme.imdbRating }}/10</p>
+                                        {% if filme.Type == "series" %}
+                                            <button class="btn btn-primary assistir-serie" data-imdbid="{{ filme.imdbID }}">Assistir</button>
+                                        {% elif filme.link_ultraembed %}
+                                            <a href="https://ultraembed.com/filme/{{ filme.imdbID }}" class="btn btn-primary">Assistir</a>
+                                        {% else %}
+                                            <p class="text-danger">Não disponível no ultraembed</p>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <!-- Filmes Pesquisados -->
+                        {% for filme in filmes %}
+                            <div class="col-6 col-md-4 mb-3">
+                                <div class="card">
+                                    <img src="{{ filme.Poster }}" class="card-img-top" alt="Poster do filme {{ filme.Title }}">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ filme.Title }}</h5>
+                                        <p class="card-text"><strong>Ano:</strong> {{ filme.Year }}</p>
+                                        <p class="card-text"><strong>Gênero:</strong> {{ filme.Genre }}</p>
+                                        <p class="card-text"><strong>Resumo:</strong> {{ filme.Plot }}</p>
+                                        <p class="card-text"><strong>Diretor:</strong> {{ filme.Director }}</p>
+                                        <p class="card-text"><strong>Elenco:</strong> {{ filme.Actors }}</p>
+                                        <p class="card-text"><strong>Duração:</strong> {{ filme.Runtime }}</p>
+                                        <p class="card-text"><strong>Idioma:</strong> {{ filme.Language }}</p>
+                                        <p class="card-text"><strong>País:</strong> {{ filme.Country }}</p>
+                                        <p class="card-text"><strong>Nota no IMDb:</strong> ⭐ {{ filme.imdbRating }}/10</p>
+                                        {% if filme.Type == "series" %}
+                                            <button class="btn btn-primary assistir-serie" data-imdbid="{{ filme.imdbID }}">Assistir</button>
+                                        {% elif filme.link_ultraembed %}
+                                            <a href="https://ultraembed.com/filme/{{ filme.imdbID }}" class="btn btn-primary">Assistir</a>
+                                        {% else %}
+                                            <p class="text-danger">Não disponível no ultraembed</p>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12 text-center">
+                        <button id="prev-page" class="btn btn-secondary">← Anterior</button>
+                        <button id="next-page" class="btn btn-secondary">Próximo →</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Formulário para Seleção de Temporada e Episódio -->
+    <div class="modal fade" id="serieModal" tabindex="-1" aria-labelledby="serieModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="serieForm">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="serieModalLabel">Selecionar Temporada e Episódio</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" id="imdbID" name="imdbID">
+                        <div class="mb-3">
+                            <label for="temporada" class="form-label">Temporada:</label>
+                            <input type="number" class="form-control" id="temporada" name="temporada" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="episodio" class="form-label">Episódio:</label>
+                            <input type="number" class="form-control" id="episodio" name="episodio" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Assistir</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botões de Compartilhar -->
+    <div class="btn-group btn-compartilhar-opcoes" style="display: none;">
+        <button class="btn btn-primary btn-compartilhar-whatsapp">WhatsApp</button>
+        <button class="btn btn-primary btn-compartilhar-telegram">Telegram</button>
+        <button class="btn btn-primary btn-compartilhar-facebook">Facebook</button>
+        <button class="btn btn-primary btn-compartilhar-twitter">Twitter</button>
+    </div>
+
+    <!-- Adicionando Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="../static/js/script.js"></script>
+
+
+
+    <!-- Rodapé -->
+    <footer class="footer mt-auto py-3 bg-light" style="position: fixed; bottom: 0; width: 100%;">
+        <div class="container">
+            <span class="text-muted">Desenvolvido por <a href="https://github.com/MMatteuss" target="_blank">Mateus</a>.</span>
+        </div>
+    </footer>
+
+    <!-- Tela de Carregamento -->
+    <div id="loading" style="display:none; position:fixed; left:0; top:0; width:100%; height:100%; background-color:rgba(255,255,255,0.8); z-index:9999; text-align:center; padding-top:20%;">
+        <div class="spinner-border text-primary" role="status">
+            <span class="sr-only">Carregando...</span>
+        </div>
+    </div>
+</body>
+</html>
