@@ -100,4 +100,4 @@ Este projeto está licenciado sob a [MIT License](LICENSE).
 **Desenvolvedor:** Mateus Araujo Monteiro  
 Entre em contato: [mateusmonteiro57@gmail.com](mailto:mateusmonteiro57@gmail.com)
 
-**GitHub:** [Seu Perfil](https://github.com/seu-usuario)
+**GitHub:** [MMatteuss](https://github.com/MMatteuss)
