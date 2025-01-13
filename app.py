@@ -8,7 +8,7 @@ import random
 app = Flask(__name__)
 
 # Variável para a chave da API (chave ativada)
-API_KEY = "55e0f40"
+API_KEY = "CHAVE API"
 
 def buscar_filmes_series_por_nome(nome_filme, page=1):
     url = "https://www.omdbapi.com/"
